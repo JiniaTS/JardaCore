@@ -1,0 +1,7 @@
+Boss professor 
+Spelly: Fireball, FrostFireBolt, Flamestrike, fear
+Prubeh encounteru
+pull bosse, na random target flamestikce kazdych urand(12000, 15000), fireball na target urand(10000, 20000),
+frostfirebolt na random target urand(4000, 8000), po 1 minute me->AttackStop(); me->SetReactState(REACT_PASSIVE);
+pujde na souradnice x:1241.01f y:457.14f z: 248.45f potom MoveRotate(12000, ROTATE_DIRECTION_RIGTH) a cast na 
+random target fear.
