@@ -17,7 +17,7 @@ emun Spells
 	SPELL_BERSERK                        =82395
 	//Trash
 	SPELL_LAVA_DROOL                     =76628
-	SPELL_LITTLE_BIG FLAME_BREATH        =76665  
+	SPELL_LITTLE_BIG_FLAME_BREATH        =76665  
 
 
 }
@@ -38,7 +38,7 @@ public:
 
 	struct boss_beautyAI : public BossAI
 	{
-		boss_beautyAI(Creature* creature) : BossAI(creature, BOSS_BEAUT, summons(creature), phase(PHASE_NULL) {}
+		boss_beautyAI(Creature* creature) : BossAI(creature, BOSS_BEAUTY, summons(creature), phase(PHASE_NULL) {}
 
 		EventMap events;
 
@@ -73,34 +73,32 @@ public:
 			{
 				switch(eventID)
 				{
-				case BERSERKER_CHARGE:
+				case EVENT_BERSERKER_CHARGE:
 					if(Unit* target = SelectTarget(SELECT_TARGET_RANDOM, 0))
-						if(!IsHeroic())
-							DoCast(target, BERSERKER_CHARGE);
-						else 
-							DoCast(target, BERSERKER_CHARGE);
-					events.RescheduleEvent(BERSERKER_CHARGE, 12000, 0, PHASE_NULL);
+						
+							DoCast(target, SPELL_BERSERKER_CHARGE);
+					events.RescheduleEvent(SPELL_BERSERKER_CHARGE, 12000, 0, PHASE_NULL);
 					break;
 
-				case FLAMEBREAK:
-					if(Unit* target = Target)
-						else 
-							DoCast(target, FLAMEBREAK);
-					events.RescheduleEvent(FLAMEBREAK, 12000, 0, PHASE_NULL);
+				case EVENT_FLAMEBREAK:
+					
+						 
+							DoCast(me->getVictim(), SPELL_FLAMEBREAK);
+					events.RescheduleEvent(SPELL_FLAMEBREAK, 12000, 0, PHASE_NULL);
 					break;
 
-				case MAGMA_SPIT:
-					if(Unit* target = SelectTarget(SELECT_TARGET_RANDOM, 0))
-						else 
-							DoCast(target, MAGMA_SPIT);
-					events.RescheduleEvent(MAGMA_SPIT, 12000, 0, PHASE_NULL);
+				case EVENT_MAGMA_SPIT:
+					
+						
+							DoCast(me->getVictim(), SPELL_MAGMA_SPIT);
+					events.RescheduleEvent(SPELL_MAGMA_SPIT, 12000, 0, PHASE_NULL);
 					break;
 
-					case TERRIFYNG_ROAR:
-					if(Unit* target = Target)
-						else 
-							DoCast(target, TERRIFYNG_ROAR);
-					events.RescheduleEvent(TERRIFYNG_ROAR, 12000, 0, PHASE_NULL);
+					case EVENT_TERRIFYNG_ROAR:
+					
+					
+							DoCast(me->getVictim(), SPELL_TERRIFYNG_ROAR);
+					events.RescheduleEvent(SPELL_TERRIFYNG_ROAR, 12000, 0, PHASE_NULL);
 					break;
 				
 				}
@@ -108,6 +106,7 @@ public:
 
 			DoMeleeAttackIfReady();
 			}
+		};
 /*########################
 # Psi	 #
 #########################*/
@@ -117,6 +116,7 @@ class npc_buster : public CreatureScript
 	public:
 		npc_buster() : CreatureScript("npc_buster") {}
 
+
 		CreatureAI* GetAI(Creature* creature) const
 		{
 			return new npc_busterAI(creature);
@@ -138,7 +138,7 @@ class npc_buster : public CreatureScript
 				events.ScheduleEvent(EVENT_LAVA_DROOL, 10000);
 				events.ScheduleEvent(EVENT_LITTLE_BIG FLAME_BREATH, 12000);
 				DoZoneInCombat();
-			
+			}
 		void UpdateAI(uint32 diff)
 		{
 			if(!UpdateVictim())
@@ -153,36 +153,40 @@ class npc_buster : public CreatureScript
 			{
 				switch(eventID)
 				{
-				case LAVA_DROOL:
-					if(Unit* target = Target)
+				case EVENT_LAVA_DROOL:
+					
 						
-						else 
-							DoCast(target, LAVA_DROOL);
-					events.RescheduleEvent(LAVA_DROOL, 12000, 0, PHASE_NULL);
+						 
+							DoCast(me->getVictim(), SPELL_LAVA_DROOL);
+					events.RescheduleEvent(SPELL_LAVA_DROOL, 12000, 0, PHASE_NULL);
 					break;
 
-				case LITTLE_BIG FLAME_BREATH:
-					if(Unit* target = Target)
-						else 
-							DoCast(target, LITTLE_BIG FLAME_BREATH);
-					events.RescheduleEvent(LITTLE_BIG FLAME_BREATH, 12000, 0, PHASE_NULL);
+				case EVENT_LITTLE_BIG_FLAME_BREATH:
+					
+				
+							DoCast(me->getVictim(), SPELL_LITTLE_BIG_FLAME_BREATH);
+					events.RescheduleEvent(SPELL_LITTLE_BIG_FLAME_BREATH, 12000, 0, PHASE_NULL);
 					break;
 			};
 				DoMeleeAttackIfReady();
 			}
+			};
+		};
+		
+			
 
-class npc_buster : public CreatureScript
+class npc_runty : public CreatureScript
 	{
 	public:
-		npc_buster() : CreatureScript("npc_buster") {}
+		npc_runty() : CreatureScript("npc_runty") {}
 
 		CreatureAI* GetAI(Creature* creature) const
 		{
-			return new npc_busterAI(creature);
+			return new npc_runtyAI(creature);
 		}
-		struct npc_busterAI : BossAI
+		struct npc_runtyAI : BossAI
 		{
-			npc_busterAI(Creature* creature) : BossAI(creature, BOSS_BEAUTY), phase(PHASE_NULL) {}
+			npc_runtyAI(Creature* creature) : BossAI(creature, BOSS_BEAUTY), phase(PHASE_NULL) {}
 
 			EventMap events;
 			Phases phase;
@@ -213,23 +217,25 @@ class npc_buster : public CreatureScript
 			{
 				switch(eventID)
 				{
-				case LAVA_DROOL:
-					if(Unit* target = Target)
+				case EVENT_LAVA_DROOL:
+					
 						
-						else 
-							DoCast(target, LAVA_DROOL);
-					events.RescheduleEvent(LAVA_DROOL, 12000, 0, PHASE_NULL);
+						
+							DoCast(me->getVictim(), SPELL_LAVA_DROOL);
+					events.RescheduleEvent(SPELL_LAVA_DROOL, 12000, 0, PHASE_NULL);
 					break;
 
-				case LITTLE_BIG FLAME_BREATH:
-					if(Unit* target = Target)
-						else 
-							DoCast(target, LITTLE_BIG FLAME_BREATH);
-					events.RescheduleEvent(LITTLE_BIG FLAME_BREATH, 12000, 0, PHASE_NULL);
+				case EVENT_LITTLE_BIG_FLAME_BREATH:
+					
+						
+							DoCast(me->getVictim(), SPELL_LITTLE_BIG_FLAME_BREATH);
+					events.RescheduleEvent(SPELL_LITTLE_BIG_FLAME_BREATH, 12000, 0, PHASE_NULL);
 					break;
-			};
+			}
 				DoMeleeAttackIfReady();
 			}
+			};
+		};
 
 
 class npc_spot : public CreatureScript
@@ -273,21 +279,21 @@ class npc_spot : public CreatureScript
 			{
 				switch(eventID)
 				{
-				case LAVA_DROOL:
-					if(Unit* target = Target)
+				case EVENT_LAVA_DROOL:
 						
-						else 
-							DoCast(target, LAVA_DROOL);
-					events.RescheduleEvent(LAVA_DROOL, 12000, 0, PHASE_NULL);
+						
+							DoCast(me->getVictim(), SPELL_LAVA_DROOL);
+					events.RescheduleEvent(SPELL_LAVA_DROOL, 12000, 0, PHASE_NULL);
 					break;
 
-				case LITTLE_BIG FLAME_BREATH:
-					if(Unit* target = Target)
-						else 
-							DoCast(target, LITTLE_BIG FLAME_BREATH);
-					events.RescheduleEvent(LITTLE_BIG FLAME_BREATH, 12000, 0, PHASE_NULL);
+				case EVENT_LITTLE_BIG_FLAME_BREATH:
+					
+						 
+							DoCast(me->getVictim(), SPELL_LITTLE_BIG_FLAME_BREATH);
+					events.RescheduleEvent(SPELL_LITTLE_BIG_FLAME_BREATH, 12000, 0, PHASE_NULL);
 					break;
 			};
 				DoMeleeAttackIfReady();
 			}
-		};
+			};
+					};
