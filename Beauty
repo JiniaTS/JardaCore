@@ -1,5 +1,5 @@
 /*########################
-# Jarda WoW (c)    	 #
+# Jarda WoW (c)  		 #
 #########################*/
 
 #include "ScriptPCH.h"
@@ -59,22 +59,71 @@ public:
 			events.ScheduleEvent(EVENT_BERSERK, 900000, 0,);
 			DoZoneInCombat();
 		}
+		void UpdateAI(uint32 diff)
+		{
+			if(!UpdateVictim())
+				return;
+
+			events.Update(diff);
+
+			if(phase == PHASE_NULL)
+			{
+
+			while(uint32 eventID = events.ExecuteEvent())
+			{
+				switch(eventID)
+				{
+				case BERSERKER_CHARGE:
+					if(Unit* target = SelectTarget(SELECT_TARGET_RANDOM, 0))
+						if(!IsHeroic())
+							DoCast(target, BERSERKER_CHARGE);
+						else 
+							DoCast(target, BERSERKER_CHARGE);
+					events.RescheduleEvent(BERSERKER_CHARGE, 12000, 0, PHASE_NULL);
+					break;
+
+				case FLAMEBREAK:
+					if(Unit* target = Target)
+						else 
+							DoCast(target, FLAMEBREAK);
+					events.RescheduleEvent(FLAMEBREAK, 12000, 0, PHASE_NULL);
+					break;
+
+				case MAGMA_SPIT:
+					if(Unit* target = SelectTarget(SELECT_TARGET_RANDOM, 0))
+						else 
+							DoCast(target, MAGMA_SPIT);
+					events.RescheduleEvent(MAGMA_SPIT, 12000, 0, PHASE_NULL);
+					break;
+
+					case TERRIFYNG_ROAR:
+					if(Unit* target = Target)
+						else 
+							DoCast(target, TERRIFYNG_ROAR);
+					events.RescheduleEvent(TERRIFYNG_ROAR, 12000, 0, PHASE_NULL);
+					break;
+				
+				}
+			}
+
+			DoMeleeAttackIfReady();
+			}
 /*########################
 # Psi	 #
 #########################*/
 
-class npc_lucky : public CreatureScript
+class npc_buster : public CreatureScript
 	{
 	public:
-		npc_lucky() : CreatureScript("npc_lucky") {}
+		npc_buster() : CreatureScript("npc_buster") {}
 
 		CreatureAI* GetAI(Creature* creature) const
 		{
-			return new npc_luckyAI(creature);
+			return new npc_busterAI(creature);
 		}
-		struct npc_luckyAI : BossAI
+		struct npc_busterAI : BossAI
 		{
-			npc_luckyAI(Creature* creature) : BossAI(creature, BOSS_BEAUTY), phase(PHASE_NULL) {}
+			npc_busterAI(Creature* creature) : BossAI(creature, BOSS_BEAUTY), phase(PHASE_NULL) {}
 
 			EventMap events;
 			Phases phase;
@@ -89,6 +138,37 @@ class npc_lucky : public CreatureScript
 				events.ScheduleEvent(EVENT_LAVA_DROOL, 10000);
 				events.ScheduleEvent(EVENT_LITTLE_BIG FLAME_BREATH, 12000);
 				DoZoneInCombat();
+			
+		void UpdateAI(uint32 diff)
+		{
+			if(!UpdateVictim())
+				return;
+
+			events.Update(diff);
+
+			if(phase == PHASE_NULL)
+			{
+
+			while(uint32 eventID = events.ExecuteEvent())
+			{
+				switch(eventID)
+				{
+				case LAVA_DROOL:
+					if(Unit* target = Target)
+						
+						else 
+							DoCast(target, LAVA_DROOL);
+					events.RescheduleEvent(LAVA_DROOL, 12000, 0, PHASE_NULL);
+					break;
+
+				case LITTLE_BIG FLAME_BREATH:
+					if(Unit* target = Target)
+						else 
+							DoCast(target, LITTLE_BIG FLAME_BREATH);
+					events.RescheduleEvent(LITTLE_BIG FLAME_BREATH, 12000, 0, PHASE_NULL);
+					break;
+			};
+				DoMeleeAttackIfReady();
 			}
 
 class npc_buster : public CreatureScript
@@ -117,5 +197,97 @@ class npc_buster : public CreatureScript
 				events.ScheduleEvent(EVENT_LAVA_DROOL, 10000);
 				events.ScheduleEvent(EVENT_LITTLE_BIG FLAME_BREATH, 12000);
 				DoZoneInCombat();
+			}
+
+		void UpdateAI(uint32 diff)
+		{
+			if(!UpdateVictim())
+				return;
+
+			events.Update(diff);
+
+			if(phase == PHASE_NULL)
+			{
+
+			while(uint32 eventID = events.ExecuteEvent())
+			{
+				switch(eventID)
+				{
+				case LAVA_DROOL:
+					if(Unit* target = Target)
+						
+						else 
+							DoCast(target, LAVA_DROOL);
+					events.RescheduleEvent(LAVA_DROOL, 12000, 0, PHASE_NULL);
+					break;
+
+				case LITTLE_BIG FLAME_BREATH:
+					if(Unit* target = Target)
+						else 
+							DoCast(target, LITTLE_BIG FLAME_BREATH);
+					events.RescheduleEvent(LITTLE_BIG FLAME_BREATH, 12000, 0, PHASE_NULL);
+					break;
+			};
+				DoMeleeAttackIfReady();
+			}
+
+
+class npc_spot : public CreatureScript
+	{
+	public:
+		npc_spot() : CreatureScript("npc_spot") {}
+
+		CreatureAI* GetAI(Creature* creature) const
+		{
+			return new npc_spotAI(creature);
+		}
+		struct npc_spotAI : BossAI
+		{
+			npc_spotAI(Creature* creature) : BossAI(creature, BOSS_BEAUTY), phase(PHASE_NULL) {}
+
+			EventMap events;
+			Phases phase;
+
+			void Reset()
+			{
+				_Reset();
+			}
+
+			void EnterCombat(Unit* /*who*/)
+			{
+				events.ScheduleEvent(EVENT_LAVA_DROOL, 10000);
+				events.ScheduleEvent(EVENT_LITTLE_BIG FLAME_BREATH, 12000);
+				DoZoneInCombat();
+			}
+					void UpdateAI(uint32 diff)
+		{
+			if(!UpdateVictim())
+				return;
+
+			events.Update(diff);
+
+			if(phase == PHASE_NULL)
+			{
+
+			while(uint32 eventID = events.ExecuteEvent())
+			{
+				switch(eventID)
+				{
+				case LAVA_DROOL:
+					if(Unit* target = Target)
+						
+						else 
+							DoCast(target, LAVA_DROOL);
+					events.RescheduleEvent(LAVA_DROOL, 12000, 0, PHASE_NULL);
+					break;
+
+				case LITTLE_BIG FLAME_BREATH:
+					if(Unit* target = Target)
+						else 
+							DoCast(target, LITTLE_BIG FLAME_BREATH);
+					events.RescheduleEvent(LITTLE_BIG FLAME_BREATH, 12000, 0, PHASE_NULL);
+					break;
+			};
+				DoMeleeAttackIfReady();
 			}
 		};
