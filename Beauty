@@ -1,0 +1,121 @@
+/*########################
+# Jarda WoW (c)    	 #
+#########################*/
+
+#include "ScriptPCH.h"
+#include "stone_core.h"
+#include "ScriptedCreature.h"
+
+
+emun Spells
+{
+
+	SPELL_BERSERKER_CHARGE               =76030
+	SPELL_FLAMEBREAK                     =76032
+	SPELL_MAGMA_SPIT                     =76031
+	SPELL_TERRIFYNG_ROAR                 =76028
+	SPELL_BERSERK                        =82395
+	//Trash
+	SPELL_LAVA_DROOL                     =76628
+	SPELL_LITTLE_BIG FLAME_BREATH        =76665  
+
+
+}
+
+/*########################
+# Boss Beauty			 #
+#########################*/
+
+class boss_beauty : public CreatureScript
+{
+public:
+	boss_corbosus() : CreatureScript("boss_beauty") {}
+
+	CreatureAI* GetAI(Creature* creature) const
+	{
+		return new boss_beautyAI(creature);
+	}
+
+	struct boss_beautyAI : public BossAI
+	{
+		boss_beautyAI(Creature* creature) : BossAI(creature, BOSS_BEAUT, summons(creature), phase(PHASE_NULL) {}
+
+		EventMap events;
+
+
+		void Reset()
+		{
+			me->SetVisible(true);
+			phase = PHASE_NULL;
+			events.SetPhase(PHASE_NULL);
+		}
+
+		void EnterCombat(Unit* /*who*/)
+		{
+			events.ScheduleEvent(EVENT_BERSERKER_CHARGE, 15000,0,);
+			events.ScheduleEvent(EVENT_FLAMEBREAK, 25000, 0,);
+			events.ScheduleEvent(EVENT_MAGMA_SPIT, 33000,);
+			events.ScheduleEvent(EVENT_TERRIFYNG_ROAR, 25000, 0,);
+			events.ScheduleEvent(EVENT_BERSERK, 900000, 0,);
+			DoZoneInCombat();
+		}
+/*########################
+# Psi	 #
+#########################*/
+
+class npc_lucky : public CreatureScript
+	{
+	public:
+		npc_lucky() : CreatureScript("npc_lucky") {}
+
+		CreatureAI* GetAI(Creature* creature) const
+		{
+			return new npc_luckyAI(creature);
+		}
+		struct npc_luckyAI : BossAI
+		{
+			npc_luckyAI(Creature* creature) : BossAI(creature, BOSS_BEAUTY), phase(PHASE_NULL) {}
+
+			EventMap events;
+			Phases phase;
+
+			void Reset()
+			{
+				_Reset();
+			}
+
+			void EnterCombat(Unit* /*who*/)
+			{
+				events.ScheduleEvent(EVENT_LAVA_DROOL, 10000);
+				events.ScheduleEvent(EVENT_LITTLE_BIG FLAME_BREATH, 12000);
+				DoZoneInCombat();
+			}
+
+class npc_buster : public CreatureScript
+	{
+	public:
+		npc_buster() : CreatureScript("npc_buster") {}
+
+		CreatureAI* GetAI(Creature* creature) const
+		{
+			return new npc_busterAI(creature);
+		}
+		struct npc_busterAI : BossAI
+		{
+			npc_busterAI(Creature* creature) : BossAI(creature, BOSS_BEAUTY), phase(PHASE_NULL) {}
+
+			EventMap events;
+			Phases phase;
+
+			void Reset()
+			{
+				_Reset();
+			}
+
+			void EnterCombat(Unit* /*who*/)
+			{
+				events.ScheduleEvent(EVENT_LAVA_DROOL, 10000);
+				events.ScheduleEvent(EVENT_LITTLE_BIG FLAME_BREATH, 12000);
+				DoZoneInCombat();
+			}
+		};
