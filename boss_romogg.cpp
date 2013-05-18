@@ -54,10 +54,14 @@ public:
 		boss_romoggAI(Creature* creature) : BossAI(creature, DATA_BONECRUSHER){}
 
 		EventMap events;
+		bool SkulcrackOne;
+		bool SkulcrackTwo;
 
 		void Reset()
 		{
 			_Reset();
+			SkulcrackOne = false;
+			SkulcrackTwo = false;
 		}
 
 		void EnterCombat(Unit* /*who*/)
@@ -74,13 +78,19 @@ public:
 
 			events.Update(diff);
 
-			if(HealthBelowPct(66))
+			if(HealthBelowPct(66) && !SkulcrackOne)
+			{
 				me->SummonCreature(NPC_CHAINS_OF_WHO, me->GetPositionX() + irand(-6, 6), me->GetPositionY() + irand(-6,6), me->GetPositionZ(), 0, TEMPSUMMON_CORPSE_DESPAWN);
 				DoCast(me->getVictim(), SPELL_THE_SKULLCRACKER );
+				SkulcrackOne = true;
+			}
 
-			if(HealthBelowPct(33))
+			if(HealthBelowPct(33) && !SkulcrackTwo)
+			{
 				me->SummonCreature(NPC_CHAINS_OF_WHO, me->GetPositionX() + irand(-6, 6), me->GetPositionY() + irand(-6,6), me->GetPositionZ(), 0, TEMPSUMMON_CORPSE_DESPAWN);
 				DoCast(me->getVictim(), SPELL_THE_SKULLCRACKER );
+				SkulcrackTwo = true;
+			}
 
 			while(uint32 eventID = events.ExecuteEvent())
 			{
