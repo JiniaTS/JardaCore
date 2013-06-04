@@ -37,8 +37,145 @@ UPDATE quest_template SET NextQuestIdChain=28823, PrevQuestId=28785 WHERE Id=287
 UPDATE quest_template SET NextQuestIdChain=26389, PrevQuestId=28797 WHERE Id=28823; -- The Rear is Clear
 UPDATE quest_template SET RequiredClasses=2, RequiredRaces=1 WHERE Id IN(28762, 28770, 3101, 26918, 28785, 28797);
 
-DELETE FROM creature_questrelation WHERE id IN(197, 198, 823, 925);
-DELETE FROM creature_involvedrelation WHERE id IN(197, 198, 823, 925);
+DELETE FROM creature_questrelation WHERE quest=26913;
+DELETE FROM creature_involvedrelation WHERE quest=3102;
+DELETE FROM creature_questrelation WHERE id IN(197, 198, 823, 925, 911, 915, 43278, 375, 459);
+DELETE FROM creature_involvedrelation WHERE id IN(197, 198, 823, 925, 911, 915, 43278, 375, 459);
+
+-- Mage
+UPDATE quest_template SET NextQuestIdChain=28823, PrevQuestId=28784 WHERE Id=28792; -- They Sent Assassins
+UPDATE quest_template SET NextQuestIdChain=26389, PrevQuestId=28792 WHERE Id=28823; -- The Rear is Clear
+UPDATE quest_template SET RequiredClasses=128, RequiredRaces=1 WHERE Id IN(28757, 28769, 3104, 26916, 28784, 28792, 28823);
+
+-- Paladin
+UPDATE quest_template SET NextQuestIdChain=28817, PrevQuestId=28785 WHERE Id=28797; -- They Sent Assassins
+UPDATE quest_template SET NextQuestIdChain=26389, PrevQuestId=28797 WHERE Id=28817; -- The Rear is Clear
+UPDATE quest_template SET RequiredClasses=2, RequiredRaces=1 WHERE Id IN(28762, 28770, 3101, 26918, 28785, 28797, 28817);
+
+-- Rogue
+UPDATE quest_template SET NextQuestIdChain=28764 WHERE Id=28772; -- Beating Them Back!
+UPDATE quest_template SET NextQuestIdChain=3102, PrevQuestId=28772 WHERE Id=28764; -- Lions for Lambs
+UPDATE quest_template SET NextQuestIdChain=26915, PrevQuestId=28764 WHERE Id=3102; -- Encrypted Letter
+UPDATE quest_template SET NextQuestIdChain=28787, PrevQuestId=3102 WHERE Id=26915; -- The Deepest Cut
+UPDATE quest_template SET NextQuestIdChain=28795, PrevQuestId=26915 WHERE Id=28787; -- Join the Battle
+UPDATE quest_template SET NextQuestIdChain=28821, PrevQuestId=28787 WHERE Id=28795; -- They Sent Assassins
+UPDATE quest_template SET NextQuestIdChain=26389, PrevQuestId=28795 WHERE Id=28821; -- The Rear is Clear
+UPDATE quest_template SET RequiredClasses=8, RequiredRaces=1 WHERE Id IN(28772, 28764, 3102, 26915, 28787, 28795, 28821);
+
+-- Hunter
+UPDATE quest_template SET NextQuestIdChain=28759 WHERE Id=28767; -- Beating Them Back!
+UPDATE quest_template SET NextQuestIdChain=26910, PrevQuestId=28767 WHERE Id=28759; -- Lions for Lambs
+UPDATE quest_template SET NextQuestIdChain=26917, PrevQuestId=28759 WHERE Id=26910; -- Etched Letter
+UPDATE quest_template SET NextQuestIdChain=28780, PrevQuestId=26910 WHERE Id=26917; -- The Hunter's Path
+UPDATE quest_template SET NextQuestIdChain=28791, PrevQuestId=26917 WHERE Id=28780; -- Join the Battle
+UPDATE quest_template SET NextQuestIdChain=28820, PrevQuestId=28780 WHERE Id=28791; -- They Sent Assassins
+UPDATE quest_template SET NextQuestIdChain=26389, PrevQuestId=28791 WHERE Id=28820; -- The Rear is Clear
+UPDATE quest_template SET RequiredClasses=8, RequiredRaces=1 WHERE Id IN(28767, 28759, 26910, 26917, 28780, 28791, 28820);
+
+-- Priest
+UPDATE quest_template SET NextQuestIdChain=28771 WHERE Id=28763; -- Beating Them Back!
+UPDATE quest_template SET NextQuestIdChain=3103, PrevQuestId=28763 WHERE Id=28771; -- Lions for Lambs
+UPDATE quest_template SET NextQuestIdChain=26919, PrevQuestId=28771 WHERE Id=3103; -- Hallowed Letter
+UPDATE quest_template SET NextQuestIdChain=28786, PrevQuestId=3103 WHERE Id=26919; -- Learning the Word
+UPDATE quest_template SET NextQuestIdChain=28796, PrevQuestId=26919 WHERE Id=28786; -- Join the Battle
+UPDATE quest_template SET NextQuestIdChain=28822, PrevQuestId=28786 WHERE Id=28796; -- They Sent Assassins
+UPDATE quest_template SET NextQuestIdChain=26389, PrevQuestId=28796 WHERE Id=28822; -- The Rear is Clear
+UPDATE quest_template SET RequiredClasses=16, RequiredRaces=1 WHERE Id IN(28763, 28771, 3103, 26919, 28786, 28796, 28822);
+
+-- Warlock
+UPDATE quest_template SET NextQuestIdChain=28773 WHERE Id=28765; -- Beating Them Back!
+UPDATE quest_template SET NextQuestIdChain=3105, PrevQuestId=28765 WHERE Id=28773; -- Lions for Lambs
+UPDATE quest_template SET NextQuestIdChain=26914, PrevQuestId=28873 WHERE Id=3105; -- Tainted Letter
+UPDATE quest_template SET NextQuestIdChain=28788, PrevQuestId=3105 WHERE Id=26914; -- Corruption
+UPDATE quest_template SET NextQuestIdChain=28794, PrevQuestId=26914 WHERE Id=28788; -- Join the Battle
+UPDATE quest_template SET NextQuestIdChain=28819, PrevQuestId=28788 WHERE Id=28794; -- They Sent Assassins
+UPDATE quest_template SET NextQuestIdChain=26389, PrevQuestId=28794 WHERE Id=28819; -- The Rear is Clear
+UPDATE quest_template SET RequiredClasses=256, RequiredRaces=1 WHERE Id IN(28765, 28773, 3105, 26914, 28788, 28794, 28819);
+
+-- Warrior
+UPDATE quest_template SET NextQuestIdChain=28774 WHERE Id=28766; -- Beating Them Back!
+UPDATE quest_template SET NextQuestIdChain=3100, PrevQuestId=28766 WHERE Id=28774; -- Lions for Lambs
+UPDATE quest_template SET NextQuestIdChain=26913, PrevQuestId=28774 WHERE Id=3100; -- Simple Letter
+UPDATE quest_template SET NextQuestIdChain=28789, PrevQuestId=3100 WHERE Id=26913; -- Charging into Battle
+UPDATE quest_template SET NextQuestIdChain=28793, PrevQuestId=26913 WHERE Id=28789; -- Join the Battle
+UPDATE quest_template SET NextQuestIdChain=28818, PrevQuestId=28789 WHERE Id=28793; -- They Sent Assassins
+UPDATE quest_template SET NextQuestIdChain=26389, PrevQuestId=28793 WHERE Id=28818; -- The Rear is Clear
+UPDATE quest_template SET RequiredClasses=1, RequiredRaces=1 WHERE Id IN(28766, 28774, 3100, 26913, 28789, 28793, 28818);
+
+
+INSERT INTO creature_questrelation(id, quest) VALUES
+(197, 28772),
+(197, 28767),
+(197, 28763),
+(197, 28765),
+(197, 28766),
+(197, 28764),
+(197, 28759),
+(197, 28771),
+(197, 28773),
+(197, 28774),
+(197, 3102),
+(197, 26910),
+(197, 3103),
+(197, 3105),
+(197, 3100),
+(911, 26913),
+(911, 28789),
+(459, 26914),
+(459, 28788),
+(375, 26919),
+(375, 28786),
+(43278, 26917),
+(43278, 28780),
+(915, 26915),
+(915, 28787),
+(823, 28793),
+(823, 28794), 
+(823, 28796),
+(823, 28791),
+(823, 28795),
+(823, 28818),
+(823, 28819),
+(823, 28822),
+(823, 28820),
+(823, 28821);
+
+INSERT INTO creature_involvedrelation(id, quest) VALUES
+(197, 28772),
+(197, 28767),
+(197, 28763),
+(197, 28765),
+(197, 28766),
+(197, 28764),
+(197, 28759),
+(197, 28771),
+(197, 28773),
+(197, 28774),
+(915, 3102),
+(43278, 26910),
+(375, 3103),
+(459, 3105),
+(911, 3100),
+(911, 26913),
+(823, 28789),
+(459, 26914),
+(823, 28788),
+(375, 26919),
+(823, 28786),
+(43278, 26917),
+(823, 28780),
+(915, 26915),
+(823, 28787),
+(823, 28793),
+(823, 28794),
+(823, 28796),
+(823, 28791),
+(823, 28795),
+(197, 28818),
+(197, 28819),
+(197, 28822),
+(197, 28820),
+(197, 28821);
 
 INSERT INTO creature_questrelation(id, quest) VALUES
 (198, 28784),
