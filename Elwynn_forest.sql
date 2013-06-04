@@ -205,3 +205,4 @@ INSERT INTO creature_involvedrelation(id, quest) VALUES
 (823, 28797),
 (197, 28823); 
 
+DELETE FROM creature_questrelation WHERE id IN(49871, 49874);
