@@ -70,7 +70,7 @@ UPDATE quest_template SET NextQuestIdChain=28780, PrevQuestId=26910 WHERE Id=269
 UPDATE quest_template SET NextQuestIdChain=28791, PrevQuestId=26917 WHERE Id=28780; -- Join the Battle
 UPDATE quest_template SET NextQuestIdChain=28820, PrevQuestId=28780 WHERE Id=28791; -- They Sent Assassins
 UPDATE quest_template SET NextQuestIdChain=26389, PrevQuestId=28791 WHERE Id=28820; -- The Rear is Clear
-UPDATE quest_template SET RequiredClasses=8, RequiredRaces=1 WHERE Id IN(28767, 28759, 26910, 26917, 28780, 28791, 28820);
+UPDATE quest_template SET RequiredClasses=4, RequiredRaces=1 WHERE Id IN(28767, 28759, 26910, 26917, 28780, 28791, 28820);
 
 -- Priest
 UPDATE quest_template SET NextQuestIdChain=28771 WHERE Id=28763; -- Beating Them Back!
@@ -85,7 +85,7 @@ UPDATE quest_template SET RequiredClasses=16, RequiredRaces=1 WHERE Id IN(28763,
 -- Warlock
 UPDATE quest_template SET NextQuestIdChain=28773 WHERE Id=28765; -- Beating Them Back!
 UPDATE quest_template SET NextQuestIdChain=3105, PrevQuestId=28765 WHERE Id=28773; -- Lions for Lambs
-UPDATE quest_template SET NextQuestIdChain=26914, PrevQuestId=28873 WHERE Id=3105; -- Tainted Letter
+UPDATE quest_template SET NextQuestIdChain=26914, PrevQuestId=28773 WHERE Id=3105; -- Tainted Letter
 UPDATE quest_template SET NextQuestIdChain=28788, PrevQuestId=3105 WHERE Id=26914; -- Corruption
 UPDATE quest_template SET NextQuestIdChain=28794, PrevQuestId=26914 WHERE Id=28788; -- Join the Battle
 UPDATE quest_template SET NextQuestIdChain=28819, PrevQuestId=28788 WHERE Id=28794; -- They Sent Assassins
