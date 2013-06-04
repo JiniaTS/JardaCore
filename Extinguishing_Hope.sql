@@ -1,4 +1,4 @@
---Extinguishing Hope Elwynn Forest
+-- Extinguishing Hope Elwynn Forest
 
 DELETE FROM conditions WHERE SourceTypeOrReferenceId=13 AND SourceEntry=80208;
 INSERT INTO conditions(SourceTypeOrReferenceId, SourceEntry, ConditionTypeOrReference, ConditionValue1, ConditionValue2, comment)
