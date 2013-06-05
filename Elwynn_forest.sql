@@ -53,8 +53,8 @@ UPDATE quest_template SET NextQuestIdChain=26389, PrevQuestId=28797 WHERE Id=288
 UPDATE quest_template SET RequiredClasses=2, RequiredRaces=1 WHERE Id IN(28762, 28770, 3101, 26918, 28785, 28797, 28817);
 
 -- Rogue
-UPDATE quest_template SET NextQuestIdChain=28764 WHERE Id=28772; -- Beating Them Back!
-UPDATE quest_template SET NextQuestIdChain=3102, PrevQuestId=28772 WHERE Id=28764; -- Lions for Lambs
+UPDATE quest_template SET NextQuestIdChain=28772 WHERE Id=28764; -- Beating Them Back!
+UPDATE quest_template SET NextQuestIdChain=3102, PrevQuestId=28764 WHERE Id=28772; -- Lions for Lambs
 UPDATE quest_template SET NextQuestIdChain=26915, PrevQuestId=28764 WHERE Id=3102; -- Encrypted Letter
 UPDATE quest_template SET NextQuestIdChain=28787, PrevQuestId=3102 WHERE Id=26915; -- The Deepest Cut
 UPDATE quest_template SET NextQuestIdChain=28795, PrevQuestId=26915 WHERE Id=28787; -- Join the Battle
